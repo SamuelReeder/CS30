@@ -18,10 +18,18 @@ public class GP3EncDec {
      */
     public static void main(String[] args) throws IOException {
         String plainFilePath = "Iliad_Homer.txt";
-        String encryptedFilePath = "Iliad_Homer_Encrypted.txt";
+        String encryptedFilePath = "Iliad_Homer_Encrypted.txt"; 
         
-        TextFile homer = new TextFile("...\" + plainFilePath); 
-        System.out.println(TextFile.readFile(homer.path));
+        TextFile homer = new TextFile("C:\\Users\\samue\\Documents\\NetBeansProjects\\GP3EncDec\\" + plainFilePath); 
+        System.out.println(homer.fileContent);
+        
+        homer.encrypt();
+        System.out.println(homer.fileContent);
+        
+        System.out.println("\nThis is the end of the program \n");
+        
+        homer.decrypt();
+        System.out.println(homer.fileContent);
     }
     
 }

@@ -18,8 +18,7 @@ public class ReviewProjectChatbot {
      */
     public static void main(String[] args) {
 
-        ChatRoom aCivilDiscussion = new ChatRoom();
-        aCivilDiscussion.chat();
+        ChatRoom.chat();
 
 //        ReviewProjectChatbot.talk();
     }
