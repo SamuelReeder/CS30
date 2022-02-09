@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gp3encdec;
+package backend_models;
 
 import java.io.*;
 import java.nio.file.Path;
