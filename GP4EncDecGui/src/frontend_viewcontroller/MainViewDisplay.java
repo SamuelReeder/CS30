@@ -51,13 +51,13 @@ public class MainViewDisplay extends JFrame {
      * (but will be constructed and initialized in the initComponents method).
      * The user will see data and can later interact with these widgets.
      */
-    
     JLabel textContentLabel;
-    JTextField textContentField;
+    JTextArea textContentField;
     JButton openSourceFileButton;
     JButton saveResultToFileButton;
     JButton encryptSourceButton;
     JButton decryptSourceButton;
+    JScrollPane textContentPane;
 
     /*
      *
@@ -85,23 +85,29 @@ public class MainViewDisplay extends JFrame {
          * Construct GUI widget components here, and add them into the
          * mainDisplayPane later
          */
-        
         this.textContentLabel = new JLabel();
         this.textContentLabel.setText("Text content");
-        
-        this.textContentField = new JTextField();
-        
+
+        this.textContentField = new JTextArea();
+        this.textContentField.setSize(500, 500);
+        this.textContentField.setLineWrap(true);
+        this.textContentField.setEditable(true);
+        this.textContentField.setWrapStyleWord(rootPaneCheckingEnabled);
+
         this.openSourceFileButton = new JButton();
         this.openSourceFileButton.setText("Open File");
-        
+
         this.saveResultToFileButton = new JButton();
         this.saveResultToFileButton.setText("Save File");
-        
+
         this.encryptSourceButton = new JButton();
         this.encryptSourceButton.setText("Encrypt");
-        
+
         this.decryptSourceButton = new JButton();
         this.decryptSourceButton.setText("Decrypt");
+
+        this.textContentPane = new JScrollPane(this.textContentField);
+        this.textContentPane.setSize(500, 500);
 
         /*
          * Choose your LayoutManager for the mainDisplayPane here. See:
@@ -130,43 +136,51 @@ public class MainViewDisplay extends JFrame {
          * GridBagConstraints for it, then add the widget into the
          * mainDisplayPane
          */
-//        c = new GridBagConstraints(); // construct a new GridBagConstraints each time you use it, to avoid subtle bugs...
-//        c.gridx = 0;
-//        c.gridy = 0;
-//        c.gridwidth = 1;
-//        c.gridheight = 1;
-//        mainDisplayPane.add(this.nameLabel, c);
-//
-//        c = new GridBagConstraints();
-//        c.gridx = 1;
-//        c.gridy = 0;
-//        c.gridwidth = 1;
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.anchor = GridBagConstraints.LINE_START;
-//        mainDisplayPane.add(this.nameField, c);
-//
-//        c = new GridBagConstraints();
-//        c.gridx = 0;
-//        c.gridy = 2;
-//        mainDisplayPane.add(this.rankLabel, c);
-//
-//        c = new GridBagConstraints();
-//        c.gridx = 1;
-//        c.gridy = 2;
-//        c.gridwidth = 1;
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.anchor = GridBagConstraints.LINE_START;
-//        mainDisplayPane.add(this.rankField, c);
-//
-//        c = new GridBagConstraints();
-//        c.gridx = 6;
-//        c.gridy = 6;
-//        mainDisplayPane.add(this.openButton, c);
-//
-//        c = new GridBagConstraints();
-//        c.gridx = 7;
-//        c.gridy = 6;
-//        mainDisplayPane.add(this.saveButton, c);
+        c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        mainDisplayPane.add(this.textContentLabel, c);
+
+        c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 2;
+        c.gridheight = 2;
+        c.fill = GridBagConstraints.BOTH;
+        c.ipadx = 300;
+        c.ipady = 200;
+        mainDisplayPane.add(this.textContentPane, c);
+
+        c = new GridBagConstraints();
+        c.gridx = 2;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        mainDisplayPane.add(this.openSourceFileButton, c);
+
+        c = new GridBagConstraints();
+        c.gridx = 2;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.insets = new Insets(50, 0, 0, 0);
+        mainDisplayPane.add(this.encryptSourceButton, c);
+
+        c = new GridBagConstraints();
+        c.gridx = 2;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        mainDisplayPane.add(this.decryptSourceButton, c);
+
+        c = new GridBagConstraints();
+        c.gridx = 2;
+        c.gridy = 3;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        mainDisplayPane.add(this.saveResultToFileButton, c);
 
         this.pack(); // leave this line last in this method.
         // must pack this JFrame before it can be displayed on screen
@@ -183,9 +197,14 @@ public class MainViewDisplay extends JFrame {
      * Write below all the methods for displaying data into the GUI using this
      * MainViewDisplay object
      */
-//    void updatePowListDisplay() {
-//        this.powJListForScrollPane.setListData(this.theBackendModel.thePowList.toArray());
-//    }
+    void updateTextContentField() {
+        if (this.theBackendModel.theTextFile == null) {
+            System.out.println("It is null");
+            this.textContentField.setText("");
+        } else {
+            this.textContentField.setText(this.theBackendModel.theTextFile.fileContent);
+        }
+    }
 
     String showSaveDialog() {
         JFileChooser jfc = new JFileChooser();

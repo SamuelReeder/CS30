@@ -5,8 +5,6 @@ import backend_models.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Enumeration;
-import javax.swing.JRadioButton;
 
 /**
  * This class is responsible for manipulating the data in the backend, and
@@ -68,17 +66,16 @@ public class ModelsAndViewsController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-//            try {
-//                String pathToFile = theMainViewDisplay.showOpenDialog();
-//                if (pathToFile == null) {
-//                    return;
-//                }
-//
-//                theBackendModel.thePowList.openFromFile(pathToFile);
-//                theMainViewDisplay.clearPowDisplay();
-//            } catch (IOException ex) {
-//                System.err.println(ex);
-//            }
+            try {
+                String pathToFile = theMainViewDisplay.showOpenDialog();
+                if (pathToFile == null) {
+                    return;
+                }
+                theBackendModel.theTextFile = new TextFile(pathToFile);
+                theMainViewDisplay.updateTextContentField();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
         }
     }
 
@@ -86,20 +83,37 @@ public class ModelsAndViewsController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-//            try {
-//                String pathToFile = theMainViewDisplay.showSaveDialog();
-//                if (pathToFile == null) {
-//                    return;
-//                }
-//
-//                theBackendModel.theTextFile.saveToFile(pathToFile);
-//            } catch (IOException ex) {
-//                System.err.println(ex);
-//            }
+            try {
+                String pathToFile = theMainViewDisplay.showSaveDialog();
+                if (pathToFile == null) {
+                    return;
+                }
+
+                theBackendModel.theTextFile.saveToDisk(pathToFile);
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
         }
     }
 
- 
+    private class EncryptSourceAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            theBackendModel.theTextFile.encrypt();
+            theMainViewDisplay.updateTextContentField();
+        }
+    }
+
+    private class DecryptSourceAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            theBackendModel.theTextFile.decrypt();
+            theMainViewDisplay.updateTextContentField();
+        }
+    }
+
     /*
      *
      * Constructor. Probably nothing for students to change.
@@ -122,10 +136,9 @@ public class ModelsAndViewsController {
      * Use the following as templates for wiring in more user actions.
      */
     private void initController() {
-//        this.theMainViewDisplay.getPowButton.addActionListener(new GetPowInfoAction());
-//        this.theMainViewDisplay.setPowInfoButton.addActionListener(new SetPowInfoAction());
-//        this.theMainViewDisplay.clearButton.addActionListener(new ClearPowDisplayAction());
-//        this.theMainViewDisplay.saveButton.addActionListener(new SaveResultToFileAction());
-//        this.theMainViewDisplay.openButton.addActionListener(new OpenSourceFileAction());
+        this.theMainViewDisplay.openSourceFileButton.addActionListener(new OpenSourceFileAction());
+        this.theMainViewDisplay.saveResultToFileButton.addActionListener(new SaveResultToFileAction());
+        this.theMainViewDisplay.decryptSourceButton.addActionListener(new DecryptSourceAction());
+        this.theMainViewDisplay.encryptSourceButton.addActionListener(new EncryptSourceAction());
     }
 }

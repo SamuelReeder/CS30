@@ -1,7 +1,6 @@
 package frontend_viewcontroller;
 
 import backend_models.*;
-import java.io.IOException;
 
 /**
  * This class and its constructor is used when your program begins running
@@ -25,11 +24,6 @@ public class BackendModelSetup {
     TextFile theTextFile;
 
     public BackendModelSetup() {
-        try {
-            this.theTextFile = new TextFile("Iliad_Homer.txt");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
+        this.theTextFile = null;
     }
 }
