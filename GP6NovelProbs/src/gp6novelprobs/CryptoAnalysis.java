@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gp5novelhistogram;
+package gp6novelprobs;
 
 /**
  *
@@ -32,5 +32,25 @@ public class CryptoAnalysis {
         }
 
         return charFreqs;
+    }
+    
+    public static CharProbability[] charProbabilitiesOf(String theTextStr) {
+        CharFrequency[] charFreqs = charFrequenciesOf(theTextStr);
+        int totalLetterCount = 0;
+        for (CharFrequency charFreq : charFreqs) {
+            totalLetterCount += charFreq.getFrequency();
+        }
+        
+        CharProbability[] charProbs = new CharProbability[charFreqs.length];
+        
+        for (int i = 0; i < charFreqs.length;i++) {
+            CharFrequency currentCharFreq = charFreqs[i];
+            
+            CharProbability charProb = new CharProbability(currentCharFreq.getChar(), (float)((float)currentCharFreq.getFrequency() / (float)totalLetterCount));
+            charProbs[i] = charProb;
+        }
+        
+        return charProbs;
+        
     }
 }

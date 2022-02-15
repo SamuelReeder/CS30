@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gp5novelhistogram;
+package gp6novelprobs;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  * @author samue
  */
-public class GP5NovelHistogram {
+public class GP6NovelProbs {
 
     /**
      * @param args the command line arguments
@@ -19,11 +19,16 @@ public class GP5NovelHistogram {
     public static void main(String[] args) throws IOException {
         String fileContent = TextFile.readFile("Adventures_of_Sherlock_Holmes.txt");
         
-        CharFrequency charFreqs[] = CryptoAnalysis.charFrequenciesOf(fileContent);
+        CharProbability charProbs[] = CryptoAnalysis.charProbabilitiesOf(fileContent);
         
-        for (CharFrequency charFreq : charFreqs) {
-            System.out.println(charFreq.toString());
+        float sum = 0;
+        
+        for (CharProbability charProb : charProbs) {
+            System.out.println(charProb.toString());
+            sum += charProb.getProbability();
         }
+        
+        System.out.println("sum = " + sum);
     }
     
 }

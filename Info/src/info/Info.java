@@ -15,9 +15,14 @@ public class Info {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ch1();
-        ch2();
-        ch3();
+        String s = "Hi b hi b hi b hi";
+        String str[] = s.split("b");
+        for (int i = 0; i < str.length; i++) {
+            System.out.println(str[i]);
+        }
+        System.out.println(str.length);
+        
+        System.out.println((int)'c');
     }
     
     public static void ch1() {
@@ -79,7 +84,44 @@ public class Info {
      }
      
      public static void ch16() {
-         x("ON 16");
+         x("private can only be accessed from within class");
+         x("When a class is set to equal another class, they will be the same class with two references. When == checked, it will output true. Two different classes with same values will not be equal.");
+         x("Strings are stored in string constant pool and thus two identical strings will equal eachother. Unless declared as such: String s = new String(\"\"); and s is compared with its counterpart");
+         x("if public or private is not specified will behaved mostly like public");
+         x("Numeric state variables are automatically initialized to 0. If in a method, it will not automatically be initialized.");
+     }
+     
+     public static void ch17() {
+         x("Probably review");
+     }
+     
+     public static void ch18() {
+         x("The value an array is declared with (new int[14])a is the length of arrary, however, since counting from 0 index 13 is the last element");
+         x("\\s is whitespace, e|g is either e or g");
+         x("For split method, to check if delimiter is at end of string (array.length - 1 counts number of delimiters), just add a harmless string so that the string can optimally be separated.");
+     }
+     
+     public static void ch19() {
+         x("Can set array to null to remove from memory (can set almost any object to null");
+         x("enhanced for loop is read only for arrays");
+     }
+     
+     public static void ch20() {
+         x("Class methods (static variables) can be accessed without creating object of that class. Can still access them if object of class is created too");
+         x("Static vars can be accessed interchangeably from all instances of class");
+         x("Static vars can only reference other static vars from within class. Non-static methods can reference either static or state vars");
+         x("static can be written before public, doesnt often happen however");
+         x("public static final double PI = 3.14159; (constant)");
+         x("System.out.println can be written as just out.println with appropriate imports, same with Math and other classes");
+     }
+     
+     public static void ch21() {
+         x("TODO along with maybe ch22");
+     }
+     
+     public static void ch25() {
+         x("always close any file related things, scanners, file writers, print writers, etc. Add true param onto end of file writer to append instead of replace");
+         x("Printwriter true param at end will force file to update directly after code is run rather then after close");
      }
      
     public static void x(String str) {

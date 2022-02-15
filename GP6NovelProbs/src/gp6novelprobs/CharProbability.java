@@ -3,39 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gp5novelhistogram;
+package gp6novelprobs;
 
 /**
  *
  * @author samue
  */
-public class CharFrequency {
+public class CharProbability {
+    
     private char letter;
-    private int frequency;
+    private float probability;
 
-    public CharFrequency(char letter) {
+    public CharProbability(char letter) {
         this.letter = letter;
     }
     
-    public CharFrequency(char letter, int freq) {
+    public CharProbability(char letter, float prob) {
         this.letter = letter;
-        this.frequency = freq;
+        this.probability = prob;
     }
         
-    public int getFrequency() {
-        return this.frequency;
+    public float getProbability() {
+        return this.probability;
     }
 
     public char getChar() {
         return this.letter;
     }
-
-    public void plusOne() {
-        this.frequency++;
-    }
     
     @Override
     public String toString(){
-        return this.letter + " = " + this.frequency; 
-    }    
+        return this.letter + " = " + this.probability;
+    }
+    
 }

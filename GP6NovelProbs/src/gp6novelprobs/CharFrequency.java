@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gp5novelhistogram;
+package gp6novelprobs;
 
 /**
  *
@@ -15,6 +15,7 @@ public class CharFrequency {
 
     public CharFrequency(char letter) {
         this.letter = letter;
+        this.frequency = 0;
     }
     
     public CharFrequency(char letter, int freq) {
