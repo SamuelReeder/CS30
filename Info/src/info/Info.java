@@ -15,12 +15,9 @@ public class Info {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String s = "Hi b hi b hi b hi";
-        String str[] = s.split("b");
-        for (int i = 0; i < str.length; i++) {
-            System.out.println(str[i]);
-        }
-        System.out.println(str.length);
+//        String[] str = {"Hi", "hey", "eee"};
+        String str = "Hiiii";
+        System.out.println(str.length());
         
         System.out.println((int)'c');
     }
