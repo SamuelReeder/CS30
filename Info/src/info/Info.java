@@ -5,6 +5,8 @@
  */
 package info;
 
+import java.util.Arrays;
+
 /**
  *
  * @author samue
@@ -16,10 +18,15 @@ public class Info {
      */
     public static void main(String[] args) {
 //        String[] str = {"Hi", "hey", "eee"};
-        String str = "Hiiii";
-        System.out.println(str.length());
+String h = "Peter Peter";
+        System.out.println(h.indexOf("ter"));
+        System.out.println(4/3 + 31/10.0);
         
-        System.out.println((int)'c');
+        char ch1[] = {'0', '1', '2', '3', '4'};
+        char ch2[] = {'a', 'b', 'c', 'd', 'e'};
+        Arrays.sort(ch2);
+        System.arraycopy(ch1, 1, ch2, 2, 3);
+        System.out.println(ch2[2]);
     }
     
     public static void ch1() {
