@@ -12,21 +12,17 @@ package backend_models;
 public class CryptoAnalysis {
 
     public static CharFrequency[] charFrequenciesOf(String theTextStr) {
-        CharFrequency[] charFreqs = new CharFrequency[10 + 26 + 26]; // 0 to 9, a to z, A to Z
+        char[] charArr = theTextStr.toCharArray();
+        CharFrequency[] charFreqs = new CharFrequency[141];
         for (int i = 0; i < charFreqs.length; i++) {
-            if (i < 10) {
-                charFreqs[i] = new CharFrequency((char)(i + 48));
-            } else if (i < 36) {
-                charFreqs[i] = new CharFrequency((char)(i + 87));
-            } else {
-                charFreqs[i] = new CharFrequency((char)(i + 29));
-            }
+            charFreqs[i] = new CharFrequency((char)i);
         }
-        for (int i = 0; i < theTextStr.length(); i++) {
-            char currentChar = theTextStr.charAt(i);
+        for (int i = 0; i < charArr.length; i++) {
+            char currentChar = charArr[i];
             for (CharFrequency currentCharFreq : charFreqs) {
-                if (currentCharFreq.getChar() == (int) currentChar) {
+                if (currentCharFreq.getChar() == currentChar) {
                     currentCharFreq.plusOne();
+                    break;
                 }
             }
         }
@@ -75,7 +71,19 @@ public class CryptoAnalysis {
                 sorted = true;
             }
         }
-        return charProbs;
+        
+        int firstZeroProbIdx = -1;
+        for (int i = 0; i < charProbs.length; i++) {
+            if (firstZeroProbIdx == -1 && charProbs[i].getProbability() == 0) {
+                firstZeroProbIdx = i;
+            }
+        }
+        
+        CharProbability[] filteredCharProbs = new CharProbability[firstZeroProbIdx];
+        for (int i = 0; i < firstZeroProbIdx; i++) {
+            filteredCharProbs[i] = charProbs[i];
+        }
+        return filteredCharProbs;
     }
     
     public static String approxDecrypt(String cipherTxt, String charListSortedByProbabilities) {

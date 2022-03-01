@@ -128,6 +128,16 @@ String h = "Peter Peter";
          x("Printwriter true param at end will force file to update directly after code is run rather then after close");
      }
      
+     public static void ch35() {
+         x("Can use a subclass of the required class as a parameter but not the super class (unless casting)");
+         x("obj instanceof Class");
+     }
+     
+     public static void ch37() {
+         x("Use implements for interfaces, which forces one to implement the interfaces methods into the class, declared objects will be the object type of the interface, not the class (review). (realizes = implements in terminology)");
+         x("When both extending and implementing, extends keyword must be used first");
+     }
+     
     public static void x(String str) {
         System.out.println(str);
     }

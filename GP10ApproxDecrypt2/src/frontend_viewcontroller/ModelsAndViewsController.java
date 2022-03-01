@@ -4,10 +4,7 @@ import backend_models.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * This class is responsible for manipulating the data in the backend, and
@@ -145,7 +142,7 @@ public class ModelsAndViewsController {
             
             String newContent = "";
             for (CharProbability p : CryptoAnalysis.sortedCharProbabilitiesOf(theBackendModel.theTextFile.fileContent)) {
-                newContent += p + "\n";
+                newContent += p.toString() + (char)161;
             }
             
             theBackendModel.theTextFile.fileContent = newContent;
@@ -164,13 +161,12 @@ public class ModelsAndViewsController {
                 }
                 
                 String file = TextFile.readFile(pathToFile);
-                String charArr[] = file.split("\n");
+                String charArr[] = file.split("" + (char)161);
                 
                 String s = "";
-                for (String ch : charArr) {
-                    s += ch.trim().charAt(0);
+                for (int i = 0; i < charArr.length; i++) {
+                    s += charArr[i].charAt(0);
                 }
-                
                 String txt = CryptoAnalysis.approxDecrypt(theBackendModel.theTextFile.fileContent, s);
                 theBackendModel.theTextFile.fileContent = txt;
                         
